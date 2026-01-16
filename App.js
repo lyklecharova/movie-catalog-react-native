@@ -3,13 +3,19 @@ import data from './data.json';
 import MovieCard from './components/MovieCard';
 
 export default function App() {
+    
+    const moviePressHandler = (movieId) => {
+        alert(`Movie Pressed: ${movieId}`);
+    };
+
     return (
-        <View style={{ marginTop: 50 }}>
+        <View style={{ paddingTop: 50, backgroundColor: '#faf0e6' }}>
             <Text
                 style={{
                     textAlign: 'center',
                     fontSize: 30,
                     fontWeight: 'bold',
+                    marginBottom: 20,
                 }}
             >
                 Movie Catalog
@@ -17,7 +23,14 @@ export default function App() {
 
             <View>
                 {data.movies.map((movie) => (
-                    <MovieCard key={movie.id} title={movie.title} />
+                    <MovieCard
+                        key={movie.id}
+                        id={movie.id}
+                        title={movie.title}
+                        year={movie.year}
+                        imageUrl={movie.imageUrl}
+                        onPress={moviePressHandler}
+                    />
                 ))}
             </View>
         </View>
